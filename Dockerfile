@@ -7,7 +7,7 @@ RUN mkdir jdk8 && tar -xzvf jdk8.tar.gz -C jdk8 --strip-components=1
 RUN wget -q -O maven3.tar.gz https://dlcdn.apache.org/maven/maven-3/3.9.4/binaries/apache-maven-3.9.4-bin.tar.gz
 RUN mkdir maven3 && tar -xzvf maven3.tar.gz -C maven3 --strip-components=1
 
-FROM gcr.io/kaniko-project/executor:debug
+FROM gcr.io/kaniko-project/executor:slim
 ENV USER root
 
 COPY --from=busybox --chown=0:0 /tmp/jdk8 /jdk8
