@@ -10,8 +10,8 @@ RUN mkdir maven3 && tar -xzvf maven3.tar.gz -C maven3 --strip-components=1
 FROM gcr.io/kaniko-project/executor:debug
 ENV USER root
 
-COPY --from=busybox /tmp/jdk8 /kaniko/jdk8
-COPY --from=busybox /tmp/maven3 /kaniko/maven3
+COPY --from=busybox --chown=0:0 /tmp/jdk8 /kaniko/jdk8
+COPY --from=busybox --chown=0:0 /tmp/maven3 /kaniko/maven3
 
 RUN chmod -R +x /kaniko/jdk8
 RUN chmod -R +x /kaniko/maven3
