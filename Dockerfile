@@ -20,8 +20,8 @@ RUN mkdir /maven3 && chmod 777 /maven3
 COPY --from=jdk8_maven3 /tmp/jdk8 /jdk8
 COPY --from=jdk8_maven3 /tmp/maven3 /maven3
 
-ls -ld /jdk8
-ls -ld /maven3
+RUN ls -ld /jdk8
+RUN ls -ld /maven3
 
 ENV PATH $PATH:/jdk8/bin:/maven3/bin
 
