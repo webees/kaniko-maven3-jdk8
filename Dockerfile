@@ -1,8 +1,8 @@
 FROM gcr.io/kaniko-project/executor:debug as kaniko
 
 FROM maven:3-openjdk-8
-COPY --from=kaniko --chown=0:0 /kaniko /kaniko
-
+USER root
+COPY --from=kaniko /kaniko /kaniko
 ENV PATH $PATH:/kaniko
 
 RUN executor version
