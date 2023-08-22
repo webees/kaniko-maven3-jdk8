@@ -1,7 +1,7 @@
 FROM gcr.io/kaniko-project/executor:debug as kaniko
 
 FROM maven:3-openjdk-8
-COPY --from=busybox --chown=0:0 /kaniko /kaniko
+COPY --from=kaniko --chown=0:0 /kaniko /kaniko
 
 ENV PATH $PATH:/kaniko
 
