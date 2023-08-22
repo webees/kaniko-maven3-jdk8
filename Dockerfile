@@ -1,4 +1,4 @@
-FROM gcr.io/kaniko-project/executor:debug as kaniko
+FROM gcr.io/kaniko-project/executor::v1.14.0 as kaniko
 
 FROM maven:3-openjdk-8
 USER root
