@@ -14,11 +14,11 @@ RUN tar -xzvf maven3.tar.gz -C maven3 --strip-components=1
 
 FROM gcr.io/kaniko-project/executor:debug
 
-RUN mkdir /jdk8 && chmod 777 /jdk8
-RUN mkdir /maven3 && chmod 777 /maven3
-
 COPY --from=jdk8_maven3 /tmp/jdk8 /jdk8
 COPY --from=jdk8_maven3 /tmp/maven3 /maven3
+
+RUN chmod 777 /jdk8 -R
+RUN chmod 777 /maven3 -R
 
 RUN ls -ld /kaniko
 RUN ls -ld /jdk8
