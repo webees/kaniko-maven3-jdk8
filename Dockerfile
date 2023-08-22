@@ -13,9 +13,6 @@ ENV USER root
 COPY --from=busybox --chown=0:0 /tmp/jdk8 /jdk8
 COPY --from=busybox --chown=0:0 /tmp/maven3 /maven3
 
-RUN chmod -R +x /jdk8
-RUN chmod -R +x /maven3
-
 ENV PATH $PATH:/jdk8/bin:/maven3/bin
 
 RUN java -version
