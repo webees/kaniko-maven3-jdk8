@@ -19,5 +19,5 @@ RUN ls /maven3/bin
 
 ENV PATH $PATH:/jdk8/bin:/maven3/bin
 
-RUN java -version
-RUN mvn -version
+RUN /jdk8/bin/java -version
+RUN /maven3/bin/mvn -version
