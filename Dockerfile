@@ -8,9 +8,9 @@ RUN wget -q -O maven3.tar.gz https://dlcdn.apache.org/maven/maven-3/3.9.4/binari
 RUN mkdir maven3 && tar -xzvf maven3.tar.gz -C maven3 --strip-components=1
 
 FROM gcr.io/kaniko-project/executor:debug
-RUN uname -m
-COPY --from=busybox --chown=0:0 /tmp/jdk8 /jdk8
-COPY --from=busybox --chown=0:0 /tmp/maven3 /maven3
+ENV USER root
+COPY --from=busybox /tmp/jdk8 /jdk8
+COPY --from=busybox /tmp/maven3 /maven3
 
 ENV PATH $PATH:/jdk8/bin:/maven3/bin
 
