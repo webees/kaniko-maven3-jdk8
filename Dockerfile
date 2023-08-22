@@ -10,12 +10,12 @@ RUN mkdir maven3 && tar -xzvf maven3.tar.gz -C maven3 --strip-components=1
 FROM gcr.io/kaniko-project/executor:debug
 ENV USER root
 
-COPY --from=busybox /tmp/jdk8 /jdk8
-COPY --from=busybox /tmp/maven3 /maven3
+COPY --from=busybox /tmp/jdk8 /kaniko/jdk8
+COPY --from=busybox /tmp/maven3 /kaniko/maven3
 
-RUN chmod -R +x /jdk8
-RUN chmod -R +x /maven3
+RUN chmod -R +x /kaniko/jdk8
+RUN chmod -R +x /kaniko/maven3
 
-ENV PATH $PATH:/jdk8/bin:/maven3/bin
+ENV PATH $PATH:/kaniko/jdk8/bin:/kaniko/maven3/bin
 
 ENTRYPOINT ["sh", "-c", "while true; do sleep 3600; done"]
