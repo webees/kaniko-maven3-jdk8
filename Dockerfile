@@ -17,9 +17,3 @@ RUN chmod -R +x /jdk8
 RUN chmod -R +x /maven3
 
 ENV PATH $PATH:/jdk8/bin:/maven3/bin
-
-RUN /jdk8/bin/java -version
-RUN /maven3/bin/mvn -version
-
-RUN java -version
-RUN mvn -version
