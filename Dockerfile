@@ -1,6 +1,5 @@
 # use musl busybox since it's staticly compiled on all platforms
 FROM busybox:musl AS busybox
-
 WORKDIR /tmp
 RUN wget -q -O jdk8.tar.gz https://builds.openlogic.com/downloadJDK/openlogic-openjdk/8u382-b05/openlogic-openjdk-8u382-b05-linux-x64.tar.gz
 RUN mkdir jdk8
@@ -11,12 +10,9 @@ RUN mkdir maven3
 RUN tar -xzvf maven3.tar.gz -C maven3 --strip-components=1
 
 FROM gcr.io/kaniko-project/executor:debug
-
-COPY --from=busybox /tmp/jdk8 /jdk8
-COPY --from=busybox /tmp/maven3 /maven3
-
-RUN chmod -R +x /jdk8
-RUN chmod -R +x /maven3
+RUN uname -m
+COPY --from=busybox --chown=0:0 /tmp/jdk8 /jdk8
+COPY --from=busybox --chown=0:0 /tmp/maven3 /maven3
 
 ENV PATH $PATH:/jdk8/bin:/maven3/bin
 
