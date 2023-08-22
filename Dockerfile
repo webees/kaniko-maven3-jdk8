@@ -17,8 +17,8 @@ FROM gcr.io/kaniko-project/executor:debug
 RUN --mount=from=busybox,dst=/usr/ ["busybox", "sh", "-c", "mkdir -p /jdk8 && chmod 777 /jdk8"]
 RUN --mount=from=busybox,dst=/usr/ ["busybox", "sh", "-c", "mkdir -p /maven3 && chmod 777 /maven3"]
 
-COPY --from=jdk8_maven3 /tmp/jdk8 /jdk8
-COPY --from=jdk8_maven3 /tmp/maven3 /maven3
+COPY --from=jdk8_maven3 --chown=0:0 /tmp/jdk8 /jdk8
+COPY --from=jdk8_maven3 --chown=0:0 /tmp/maven3 /maven3
 
 ENV PATH $PATH:/jdk8/bin:/maven3/bin
 
