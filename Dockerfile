@@ -8,12 +8,12 @@ RUN wget -q -O maven3.tar.gz https://dlcdn.apache.org/maven/maven-3/3.9.4/binari
 
 FROM gcr.io/kaniko-project/executor:debug
 
-COPY --from=jdk8_maven3 /tmp/jdk /kaniko/executor/jdk8
-COPY --from=jdk8_maven3 /tmp/maven /kaniko/executor/maven
+COPY --from=jdk8_maven3 /tmp/jdk /jdk8
+COPY --from=jdk8_maven3 /tmp/maven /maven
 
-ENV JAVA_HOME /kaniko/executor/jdk8
+ENV JAVA_HOME /jdk8
 ENV PATH $PATH:$JAVA_HOME/bin
-ENV MAVEN_HOME /kaniko/executor/maven
+ENV MAVEN_HOME /maven
 ENV PATH $PATH:$MAVEN_HOME/bin
 
 RUN java -version
