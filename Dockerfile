@@ -1,3 +1,6 @@
+# use musl busybox since it's staticly compiled on all platforms
+FROM busybox:musl AS busybox
+
 FROM alpine AS jdk8_maven3
 
 WORKDIR /tmp
@@ -11,11 +14,11 @@ RUN tar -xzvf maven3.tar.gz -C maven3 --strip-components=1
 
 FROM gcr.io/kaniko-project/executor:debug
 
+RUN --mount=from=busybox,dst=/usr/ ["busybox", "sh", "-c", "mkdir -p /jdk8 && chmod 777 /jdk8"]
+RUN --mount=from=busybox,dst=/usr/ ["busybox", "sh", "-c", "mkdir -p /maven3 && chmod 777 /maven3"]
+
 COPY --from=jdk8_maven3 /tmp/jdk8 /jdk8
 COPY --from=jdk8_maven3 /tmp/maven3 /maven3
-
-RUN ["sh", "-c", "chmod 777 /jdk8 -R"]
-RUN ["sh", "-c", "chmod 777 /maven3 -R"]
 
 ENV PATH $PATH:/jdk8/bin:/maven3/bin
 
