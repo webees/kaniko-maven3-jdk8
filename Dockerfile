@@ -20,6 +20,7 @@ RUN --mount=from=busybox,dst=/usr/ ["busybox", "sh", "-c", "mkdir -p /maven3 && 
 COPY --from=jdk8_maven3 --chown=0:0 /tmp/jdk8 /jdk8
 COPY --from=jdk8_maven3 --chown=0:0 /tmp/maven3 /maven3
 
+ENV USER root
 ENV PATH $PATH:/jdk8/bin:/maven3/bin
 
 RUN java -version
