@@ -20,9 +20,8 @@ COPY --from=jdk8_maven3 /tmp/maven3 /maven3
 RUN chmod +x /jdk8/bin/*
 RUN chmod +x /maven3/bin/*
 
-RUN ls -ld /kaniko
-RUN ls -ld /jdk8
-RUN ls -ld /maven3
+RUN ls -l /jdk8/bin
+RUN ls -l /maven3/bin
 
 ENV PATH $PATH:/jdk8/bin:/maven3/bin
 
