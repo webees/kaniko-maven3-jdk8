@@ -14,6 +14,9 @@ FROM gcr.io/kaniko-project/executor:debug
 COPY --from=jdk8_maven3 /tmp/jdk8 /jdk8
 COPY --from=jdk8_maven3 /tmp/maven3 /maven3
 
+RUN ls /jdk8
+RUN ls /maven3
+
 ENV PATH $PATH:/jdk8/bin:/maven3/bin
 
 RUN java -version
