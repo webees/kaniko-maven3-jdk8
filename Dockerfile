@@ -13,4 +13,6 @@ RUN executor version
 RUN java -version
 RUN mvn -version
 
+RUN echo "https://github.com/webees/kaniko-maven3-jdk8" > /webees
+
 ENTRYPOINT ["sh", "-c", "while true; do sleep 3600; done"]
