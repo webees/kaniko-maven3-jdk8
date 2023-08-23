@@ -1,6 +1,6 @@
 FROM gcr.io/kaniko-project/executor:v1.14.0 as kaniko
 
-FROM maven:3-openjdk-8
+FROM maven:3-openjdk-8-slim
 USER root
 COPY --from=kaniko /kaniko /kaniko
 ENV PATH $PATH:/kaniko
